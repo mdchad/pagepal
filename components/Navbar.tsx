@@ -1,6 +1,7 @@
 import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
+import Link from "next/link";
 
 function classNames(...classes: any) {
   return classes.filter(Boolean).join(' ')
@@ -15,7 +16,9 @@ export default function Navbar() {
             <div className="flex h-16 justify-between">
               <div className="flex">
                 <div className="flex flex-shrink-0 items-center">
-                  <p className="font-mono font-bold text-xl">PagePal</p>
+                  <Link href="/">
+                    <p className="font-mono font-bold text-xl">PagePal</p>
+                  </Link>
                   {/*<img*/}
                   {/*  className="block h-8 w-auto lg:hidden"*/}
                   {/*  src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"*/}
