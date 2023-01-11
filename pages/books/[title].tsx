@@ -9,7 +9,7 @@ export default function Book() {
   return (
     <div>
       <Navbar />
-      <div className="grid grid-cols-3 mx-20 mt-24">
+      <div className="grid grid-cols-3 mx-32 mt-24">
         <p className="font-mono text-3xl font-bold">{title}</p>
       </div>
     </div>
