@@ -59,7 +59,7 @@ export default function Main() {
       <div className="mt-16">
         <p className="text-lg font-mono mb-6">Next book</p>
         <div>
-          <p className="text-sm font-mono">The subtle art of not giving a f*ck</p>
+          <p className="text-sm font-mono mb-1.5">The subtle art of not giving a f*ck</p>
           <p className="text-sm font-mono">Zero to one</p>
         </div>
       </div>

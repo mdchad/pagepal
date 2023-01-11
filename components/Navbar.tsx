@@ -17,18 +17,17 @@ export default function Navbar() {
               <div className="flex">
                 <div className="flex flex-shrink-0 items-center">
                   <Link href="/">
-                    <p className="font-mono font-bold text-xl">PagePal</p>
+                    <img
+                      className="block h-8 w-auto lg:hidden"
+                      src="/PagePal.png"
+                      alt="Your Company"
+                    />
+                    <img
+                      className="hidden h-8 w-auto lg:block"
+                      src="/PagePal.png"
+                      alt="Your Company"
+                    />
                   </Link>
-                  {/*<img*/}
-                  {/*  className="block h-8 w-auto lg:hidden"*/}
-                  {/*  src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"*/}
-                  {/*  alt="Your Company"*/}
-                  {/*/>*/}
-                  {/*<img*/}
-                  {/*  className="hidden h-8 w-auto lg:block"*/}
-                  {/*  src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"*/}
-                  {/*  alt="Your Company"*/}
-                  {/*/>*/}
                 </div>
                 {/*<div className="hidden sm:ml-6 sm:flex sm:space-x-8">*/}
                 {/*  /!* Current: "border-indigo-500 text-gray-900", Default: "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700" *!/*/}

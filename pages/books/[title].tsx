@@ -5,7 +5,6 @@ import Navbar from "../../components/Navbar";
 export default function Book() {
   const router = useRouter()
   const { title } = router.query
-  console.log(title)
 
   return (
     <div>
