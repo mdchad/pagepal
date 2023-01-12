@@ -2,8 +2,8 @@ import Link from "next/link";
 import Streak from "./Streak";
 import { PlusIcon } from "@heroicons/react/24/solid";
 import { useState } from "react";
-import {Arrow, useLayer} from "react-laag";
-import {AnimatePresence} from "framer-motion";
+import { Arrow, useLayer } from "react-laag";
+import { AnimatePresence } from "framer-motion";
 import Search from "./Search";
 
 const books = [
@@ -15,6 +15,8 @@ const books = [
 export default function Main() {
   const [isOpen, setOpen] = useState(false);
   const [searchBox, setSearchBox] = useState(false);
+  const [book, setBook] = useState<any>([]);
+  console.log(book);
 
   function close() {
     setOpen(false);
@@ -33,7 +35,7 @@ export default function Main() {
   });
 
   return (
-    <div className="grid sm:grid-cols-3 sm:grid-rows-2 mx-32 mt-24">
+    <div className="grid sm:grid-cols-3 sm:grid-rows-2 mx-48 mt-24">
       <div className="row-span-2 col-span-2">
         <p className="font-bold text-3xl mb-12 font-mono">Currently Reading</p>
         {books.map((book) => {
@@ -46,10 +48,10 @@ export default function Main() {
           );
         })}
       </div>
-      <aside className="sm:mr-10">
+      <aside className="sm:mr-4">
         <div className="mt-16">
           <p className="text-lg font-mono mb-6">Reading Streak</p>
-          <div className="grid grid-cols-[repeat(15,minmax(0,1fr))] w-3/4 gap-1">
+          <div className="grid grid-cols-[repeat(15,minmax(0,1fr))] w-5/6 gap-1">
             {Array(30)
               .fill(10)
               .map((day, i) => {
@@ -59,7 +61,7 @@ export default function Main() {
         </div>
         <div className="mt-16">
           <div className="flex justify-between items-center">
-            <p className="text-lg font-mono">Upcoming read</p>
+            <p className="text-lg font-mono">Next Books</p>
             <button
               className="cursor-pointer"
               {...triggerProps}
@@ -84,14 +86,20 @@ export default function Main() {
             </button>
           </div>
           <div className="mt-6">
-            <p className="text-sm font-mono mb-1">
-              The subtle art of not giving a f*ck
-            </p>
-            <p className="text-sm font-mono">Zero to one</p>
+            {!!book.length &&
+              book.map((b: any) => {
+                return (
+                  <p key={b.id} className="text-sm font-mono mb-1">
+                    {b.title}
+                  </p>
+                );
+              })}
           </div>
         </div>
       </aside>
-      {searchBox && <Search open={searchBox} setOpen={setSearchBox}/>}
+      {searchBox && (
+        <Search open={searchBox} setOpen={setSearchBox} setBook={setBook} />
+      )}
     </div>
   );
 }
