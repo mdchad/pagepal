@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Streak from "./Streak";
-import { PlusIcon } from "@heroicons/react/24/solid";
+import { PlusIcon, TrashIcon } from "@heroicons/react/24/solid";
 import { useState } from "react";
 import { Arrow, useLayer } from "react-laag";
 import { AnimatePresence } from "framer-motion";
@@ -89,9 +89,14 @@ export default function Main() {
             {!!book.length &&
               book.map((b: any) => {
                 return (
-                  <p key={b.id} className="text-sm font-mono mb-1">
-                    {b.title}
-                  </p>
+                  <div key={b.id} className="flex items-center justify-between">
+                    <p className="text-sm font-mono mb-1">
+                      {b.title}
+                    </p>
+                    <button>
+                      <TrashIcon height={10} width={10} />
+                    </button>
+                  </div>
                 );
               })}
           </div>

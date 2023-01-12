@@ -47,7 +47,7 @@ export default function Search({ open, setOpen, setBook }: any) {
           );
         });
       } else {
-        console.log("oii");
+        console.error("error");
       }
     },
     [debouncedSearchTerm] // Only call effect if debounced search term changes
