@@ -1,6 +1,9 @@
 import { useState } from "react";
 import {Arrow, useLayer} from "react-laag";
 import { AnimatePresence } from "framer-motion";
+import { format } from 'date-fns';
+
+const currentMonth = format(new Date(), 'MMMM'); // июнь
 
 function Streak({ day }: any): JSX.Element {
   const [isOpen, setOpen] = useState(false);
@@ -36,7 +39,7 @@ function Streak({ day }: any): JSX.Element {
               {...layerProps}
               className={`p-2 shadow-md flex flex-col items-center bg-white rounded-md text-gray-600 whitespace-nowrap`}
             >
-              <p className="font-mono text-xs">10 pages on 8 January</p>
+              <p className="font-mono text-xs">10 pages on {day} {currentMonth}</p>
               <Arrow {...arrowProps} size={5} roundness={0} />
             </div>
           )}

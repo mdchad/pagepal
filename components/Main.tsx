@@ -6,6 +6,9 @@ import { useState } from "react";
 import { Arrow, useLayer } from "react-laag";
 import { AnimatePresence } from "framer-motion";
 import Search from "./Search";
+import getDaysInMonth from 'date-fns/getDaysInMonth'
+
+const currentMonth = getDaysInMonth(new Date())
 
 export default function Main() {
   const [isOpen, setOpen] = useState(false);
@@ -47,10 +50,10 @@ export default function Main() {
         <div className="mt-16">
           <p className="text-lg font-mono mb-6">Reading Streak</p>
           <div className="grid grid-cols-[repeat(15,minmax(0,1fr))] w-5/6 gap-1">
-            {Array(30)
+            {Array(currentMonth)
               .fill(10)
               .map((day, i) => {
-                return <Streak key={i} day={i} />;
+                return <Streak key={i} day={i+1} />;
               })}
           </div>
         </div>
