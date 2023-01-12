@@ -7,6 +7,7 @@ import { Arrow, useLayer } from "react-laag";
 import { AnimatePresence } from "framer-motion";
 import Search from "./Search";
 import getDaysInMonth from 'date-fns/getDaysInMonth'
+import toast from "react-hot-toast";
 
 const currentMonth = getDaysInMonth(new Date())
 
@@ -95,11 +96,12 @@ export default function Main() {
                     <div>
                       <button
                         className="mr-2"
-                        onClick={() =>
+                        onClick={() => {
                           setBook((prevState: any) =>
                             prevState.filter((prev: any) => prev.id !== b.id)
                           )
-                        }
+                          toast('Removed book')
+                        }}
                       >
                         <TrashIcon height={12} width={12} />
                       </button>
@@ -108,6 +110,7 @@ export default function Main() {
                           prevState.filter((prev: any) => prev.id !== b.id)
                         )
                         setCurrentlyReading((prevState: any) => [...prevState, b])
+                        toast.success('Added book to reading')
                       }}>
                         <ForwardIcon height={12} width={12} />
                       </button>

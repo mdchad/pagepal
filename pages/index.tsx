@@ -3,6 +3,7 @@ import Image from 'next/image'
 import { Inter } from '@next/font/google'
 import Navbar from "../components/Navbar";
 import Main from "../components/Main";
+import {Toaster} from "react-hot-toast";
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -18,6 +19,23 @@ export default function Home() {
       <main className="grid">
         <Navbar />
         <Main />
+        {/* eslint-disable-next-line react/jsx-no-undef */}
+        <Toaster
+          position="top-center"
+          reverseOrder={false}
+          gutter={8}
+          containerClassName=""
+          containerStyle={{}}
+          toastOptions={{
+            // Define default options
+            className: '',
+            duration: 2000,
+            style: {
+              background: '#000',
+              color: '#fff',
+            }
+          }}
+        />
       </main>
     </>
   )
