@@ -1,22 +1,17 @@
 import Link from "next/link";
 import Streak from "./Streak";
-import { PlusIcon, TrashIcon } from "@heroicons/react/24/solid";
+import { PlusIcon } from "@heroicons/react/24/solid";
+import { TrashIcon, ForwardIcon } from "@heroicons/react/24/outline";
 import { useState } from "react";
 import { Arrow, useLayer } from "react-laag";
 import { AnimatePresence } from "framer-motion";
 import Search from "./Search";
 
-const books = [
-  { title: "Atomic Habits" },
-  { title: "Sapiens" },
-  { title: "Lean Startup" },
-];
-
 export default function Main() {
   const [isOpen, setOpen] = useState(false);
   const [searchBox, setSearchBox] = useState(false);
   const [book, setBook] = useState<any>([]);
-  console.log(book);
+  const [currentlyReading, setCurrentlyReading] = useState<any>([]);
 
   function close() {
     setOpen(false);
@@ -35,10 +30,10 @@ export default function Main() {
   });
 
   return (
-    <div className="grid sm:grid-cols-3 sm:grid-rows-2 mx-48 mt-24">
-      <div className="row-span-2 col-span-2">
+    <div className="grid sm:grid-cols-5 sm:grid-rows-2 mx-40 mt-24">
+      <div className="row-span-2 col-span-3">
         <p className="font-bold text-3xl mb-12 font-mono">Currently Reading</p>
-        {books.map((book) => {
+        {!!currentlyReading.length && currentlyReading.map((book: any) => {
           return (
             <Link href={`/books/${book.title}`} key={book.title}>
               <div className="rounded-md mb-1.5">
@@ -48,7 +43,7 @@ export default function Main() {
           );
         })}
       </div>
-      <aside className="sm:mr-4">
+      <aside className="sm:mr-4 col-span-2">
         <div className="mt-16">
           <p className="text-lg font-mono mb-6">Reading Streak</p>
           <div className="grid grid-cols-[repeat(15,minmax(0,1fr))] w-5/6 gap-1">
@@ -89,13 +84,31 @@ export default function Main() {
             {!!book.length &&
               book.map((b: any) => {
                 return (
-                  <div key={b.id} className="flex items-center justify-between">
-                    <p className="text-sm font-mono mb-1">
-                      {b.title}
-                    </p>
-                    <button>
-                      <TrashIcon height={10} width={10} />
-                    </button>
+                  <div
+                    key={b.id}
+                    className="flex items-center justify-between mb-1"
+                  >
+                    <p className="text-sm font-mono">{b.title}</p>
+                    <div>
+                      <button
+                        className="mr-2"
+                        onClick={() =>
+                          setBook((prevState: any) =>
+                            prevState.filter((prev: any) => prev.id !== b.id)
+                          )
+                        }
+                      >
+                        <TrashIcon height={12} width={12} />
+                      </button>
+                      <button onClick={() => {
+                        setBook((prevState: any) =>
+                          prevState.filter((prev: any) => prev.id !== b.id)
+                        )
+                        setCurrentlyReading((prevState: any) => [...prevState, b])
+                      }}>
+                        <ForwardIcon height={12} width={12} />
+                      </button>
+                    </div>
                   </div>
                 );
               })}

@@ -18,13 +18,13 @@ export default function Navbar() {
                 <div className="flex flex-shrink-0 items-center">
                   <Link href="/">
                     <img
-                      className="block h-8 w-auto lg:hidden"
-                      src="/PagePal.png"
+                      className="block h-10 w-auto lg:hidden"
+                      src="/PagePal2.png"
                       alt="Your Company"
                     />
                     <img
-                      className="hidden h-8 w-auto lg:block"
-                      src="/PagePal.png"
+                      className="hidden h-10 w-auto lg:block"
+                      src="/PagePal2.png"
                       alt="Your Company"
                     />
                   </Link>
