@@ -1,15 +1,15 @@
 import Link from "next/link";
 import Streak from "./Streak";
 import { PlusIcon } from "@heroicons/react/24/solid";
-import { TrashIcon, ForwardIcon } from "@heroicons/react/24/outline";
+import { TrashIcon, BookOpenIcon } from "@heroicons/react/24/outline";
 import { useState } from "react";
 import { Arrow, useLayer } from "react-laag";
 import { AnimatePresence } from "framer-motion";
 import Search from "./Search";
-import getDaysInMonth from 'date-fns/getDaysInMonth'
+import getDaysInMonth from "date-fns/getDaysInMonth";
 import toast from "react-hot-toast";
 
-const currentMonth = getDaysInMonth(new Date())
+const currentMonth = getDaysInMonth(new Date());
 
 export default function Main() {
   const [isOpen, setOpen] = useState(false);
@@ -37,15 +37,24 @@ export default function Main() {
     <div className="grid sm:grid-cols-5 sm:grid-rows-2 mx-40 mt-24">
       <div className="row-span-2 col-span-3">
         <p className="font-bold text-3xl mb-12 font-mono">Currently Reading</p>
-        {!!currentlyReading.length && currentlyReading.map((book: any) => {
-          return (
-            <Link href={`/books/${book.title}`} key={book.title}>
-              <div className="rounded-md mb-1.5">
-                <p className="inline-grid font-mono underline">{book.title}</p>
-              </div>
-            </Link>
-          );
-        })}
+        {!!currentlyReading.length &&
+          currentlyReading.map((book: any) => {
+            return (
+              <Link
+                href={{
+                  pathname: "/books/[title]",
+                  query: { title: book.title, book: JSON.stringify(book) },
+                }}
+                key={book.title}
+              >
+                <div className="rounded-md mb-1.5">
+                  <p className="inline-grid font-mono underline">
+                    {book.title}
+                  </p>
+                </div>
+              </Link>
+            );
+          })}
       </div>
       <aside className="sm:mr-4 col-span-2">
         <div className="mt-16">
@@ -54,7 +63,7 @@ export default function Main() {
             {Array(currentMonth)
               .fill(10)
               .map((day, i) => {
-                return <Streak key={i} day={i+1} />;
+                return <Streak key={i} day={i + 1} />;
               })}
           </div>
         </div>
@@ -99,20 +108,25 @@ export default function Main() {
                         onClick={() => {
                           setBook((prevState: any) =>
                             prevState.filter((prev: any) => prev.id !== b.id)
-                          )
-                          toast('Removed book')
+                          );
+                          toast("Removed book");
                         }}
                       >
                         <TrashIcon height={12} width={12} />
                       </button>
-                      <button onClick={() => {
-                        setBook((prevState: any) =>
-                          prevState.filter((prev: any) => prev.id !== b.id)
-                        )
-                        setCurrentlyReading((prevState: any) => [...prevState, b])
-                        toast.success('Added book to reading')
-                      }}>
-                        <ForwardIcon height={12} width={12} />
+                      <button
+                        onClick={() => {
+                          setBook((prevState: any) =>
+                            prevState.filter((prev: any) => prev.id !== b.id)
+                          );
+                          setCurrentlyReading((prevState: any) => [
+                            ...prevState,
+                            b,
+                          ]);
+                          toast.success("Added book to reading");
+                        }}
+                      >
+                        <BookOpenIcon height={12} width={12} />
                       </button>
                     </div>
                   </div>
